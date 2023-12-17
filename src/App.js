@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useMemo } from "react";
+import ProcessBar from "./components/ProcessBar";
+import SubmitTodo from "./components/SubmitToDo";
+import TodoList from "./components/TodoList";
 
 function App() {
+  const date = new Date();
+  const today = new Intl.DateTimeFormat("ko-KR").format(date);
+  useMemo(() => {}, [date, today]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{today} Todos</h1>
+      {/* 입력할 Input */}
+      <SubmitTodo />
+      {/* Todo ProcessBar */}
+      <ProcessBar />
+      <hr />
+      {/* 해야 할 일 */}
+
+      <TodoList />
+      {/* 완료한 일 */}
+      <TodoList />
     </div>
   );
 }
